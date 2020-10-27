@@ -1,0 +1,14 @@
+snippet log
+console.log($1);$0
+endsnippet
+
+snippet ajax "Sets up an ajax request"
+$.ajax({
+    type : "GET",
+    url : "$1",
+    dataType : "json",
+    success: function (data){
+		$0
+        }});
+endsnippet
+
