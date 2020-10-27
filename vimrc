@@ -1,30 +1,29 @@
-"Redefine mapleader
+"Mapleader
 let mapleader = ' '
-"Requirements
-"------------------
-"My undle Plugins
-"-----------------
+
+"My vundle Plugins
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vimwiki/vimwiki'
-Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdtree'
 Plugin 'lervag/vimtex'
 Plugin 'vim-jp/vim-java'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"Plugin 'honza/vim-snippets'
 Plugin 'pangloss/vim-javascript'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'AndrewRadev/switch.vim'
-"Plugin 'justinmk/vim-sneak'
 Plugin 'Yggdroot/indentLine'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
+let g:indentLine_enabled = 1
 let g:indentLine_char = '|'
 syntax on
+
 
 "Switch trigger
 "-------------
@@ -36,11 +35,6 @@ let g:switch_custom_definitions =
     \   ['True','False'],
     \   ['true','false'],
     \ ]
-
-"remap f with Sneak
-"-----------------
-"map f <Plug>Sneak_s
-"map F <Plug>Sneak_S
 
 colorscheme afterglow
 set colorcolumn=80
@@ -73,35 +67,22 @@ nnoremap <C-m> <C-W>\|<C-W>_
 nnoremap <C-n> <C-W>=
 
 "saving with CTRL+S
-"------------------
 :nmap <c-s> :write<CR>
 
-"fix deletion
-"------------
-"write and close
-:nmap YY ZZ
-:cmap wq <NOP>
-"discard and close
-:nmap YQ ZQ
-:cmap q! <NOP>
-
-"Fuzzy finder
-"------------
+"Open Fuzzy finder
 :nmap <C-p> :Files<CR>
 
-"edit vimrc
-"----------
-nnoremap <F12> :e /home/adam/.vimrc<CR>
-"source vimrc
-"------------
-nnoremap <F11> :source ~/.vimrc<CR>
-"Run current file script
-:nmap <silent> <F10> :!%:p<enter>
-"Autocommand run file For SH files, must be placed to $PATH first
-nnoremap <F9> :w<Cr>:!%<Cr>
-nnoremap <F8> :w<Cr>:terminal python %<Cr>
-" NERD Tree
+"F Shortcuts
 nmap <silent> <special> <F2> :NERDTreeToggle<RETURN>
+"run python inside terminal
+nnoremap <F8> :w<Cr>:terminal python %<Cr>
+"run as shell
+nnoremap <F9> :w<Cr>:!%<Cr>
+:nmap <silent> <F10> :!%:p<enter>
+"manual source
+nnoremap <F11> :source ~/.vim/vimrc<CR>
+"edit vim
+nnoremap <F12> :edit ~/.vim/vimrc<CR>
 
 
 "Cases
@@ -145,26 +126,9 @@ nnoremap § ^
 "--------------------------
 set clipboard=unnamed
 
-"Disable some keys
-"-----------------
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Down>   <NOP>
-noremap   <Up>     <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
-
-"Disable Esc And Remap to jk
+"Remap to jk
 "--------------------------
 inoremap jk <Esc>
-inoremap <esc> <NOP>
-
-"Move rows up and down
-"---------------------
-nnoremap <C-c>k :m -3<CR>
-nnoremap <C-c>j :m +1<CR>
 
 "Split Navigation
 "-------------------------
@@ -204,7 +168,6 @@ autocmd BufNewFile *.html :r ~/.vim/templates/temp.html
 "Map :W to save the document
 command! W write
 command! Q quit
-
 "Vimlatex
 let g:vimtex_compiler_latexmk = {
         \ 'backend' : 'process',
@@ -242,16 +205,13 @@ let g:UltiSnipsEditSplit="vertical"
 
 "auto source vimrc
 "--------------------
-autocmd! bufwritepost .vimrc source %
+autocmd! bufwritepost vimrc source %
 
 "auto delete whitespace
-"--------------------
 autocmd bufwritepre * %s/\s\+$//e
 
 "dwmblock autocommand
-"--------------------
 autocmd BufWritePost  /home/adam/downs/dwmblocks/config.h !cd ~/home/adam/downs/dwmblocks;     sudo make install && { killall -q dwmblocks;setsid dwmblocks & }
 
 "dwmblock autocommand
-"--------------------
 autocmd BufWritePost  ~/suckless/st/config.h !cd ~/suckless/st;     sudo make install
