@@ -18,7 +18,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'AndrewRadev/switch.vim'
-Plugin 'justinmk/vim-sneak'
+"Plugin 'justinmk/vim-sneak'
 Plugin 'Yggdroot/indentLine'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -39,8 +39,8 @@ let g:switch_custom_definitions =
 
 "remap f with Sneak
 "-----------------
-map f <Plug>Sneak_s
-map F <Plug>Sneak_S
+"map f <Plug>Sneak_s
+"map F <Plug>Sneak_S
 
 colorscheme afterglow
 set colorcolumn=80
@@ -130,7 +130,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
-set smartindent
 
 "TabHandling
 "----------
@@ -175,8 +174,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 set splitbelow splitright
 
-set nocompatible
-filetype off
+"set nocompatible
 filetype plugin on
 
 "Set VimWiki to markdown syntax
