@@ -19,7 +19,6 @@ Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'AndrewRadev/switch.vim'
 Plugin 'justinmk/vim-sneak'
-Plugin 'blindFS/vim-taskwarrior'
 Plugin 'Yggdroot/indentLine'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
