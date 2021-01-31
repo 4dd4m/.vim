@@ -213,3 +213,7 @@ autocmd! bufwritepost *.java :!javac %
 
 "auto delete whitespace
 autocmd bufwritepre * %s/\s\+$//e
+
+
+
+

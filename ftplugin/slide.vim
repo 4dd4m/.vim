@@ -1,0 +1,7 @@
+set norelativenumber
+set nonumber
+
+
+
+
+
