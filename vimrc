@@ -17,14 +17,16 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'AndrewRadev/switch.vim'
-"Plugin 'Yggdroot/indentLine'
+Plugin 'Yggdroot/indentLine'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
+
 let g:indentLine_enabled = 1
 let g:indentLine_char = '|'
 syntax on
 
+let g:airline#extensions#fzf#enabled = 1
 
 "Switch trigger
 "-------------
@@ -53,7 +55,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 "autocompletion
 "--------------------
 set wildmode=longest,list,full
-let g:fzf_layout = { 'down': '100%' }
+let g:fzf_layout = { 'window': { 'width' : 0.9, 'height' : 0.6 } }
 
 "Continue
 "----------
