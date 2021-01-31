@@ -9,6 +9,7 @@ Plugin 'vimwiki/vimwiki'
 "Plugin 'scrooloose/nerdtree'
 Plugin 'lervag/vimtex'
 Plugin 'vim-jp/vim-java'
+Plugin 'preservim/nerdtree'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
@@ -16,7 +17,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'AndrewRadev/switch.vim'
-Plugin 'Yggdroot/indentLine'
+"Plugin 'Yggdroot/indentLine'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
@@ -164,6 +165,7 @@ noremap <C-H> <C-W><C-H>
 autocmd BufNewFile *.sh,*.bash :r ~/.vim/templates/sh
 autocmd BufNewFile *.tex :r ~/.vim/templates/temp.tex
 autocmd BufNewFile *.html :r ~/.vim/templates/temp.html
+autocmd BufNewFile *.java :r ~/.vim/templates/temp.java
 
 "Map :W to save the document
 command! W write
@@ -193,9 +195,6 @@ let g:vimtex_compiler_latexmk = {
 "To limit the width of text to 72 characters displaying in mutt
 au BufRead /tmp/mutt-* set tw=72
 
-"Auto compile dwm
-autocmd BufWritePost ~/suckless/dwm/config.h !cd ~/suckless/dwm/ && sudo make install
-
 " Set ultisnips triggers
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -203,15 +202,14 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+nnoremap <C-c> :!g++ -o  %:r.out % -std=c++17<Enter>
+nnoremap <F4> :!markdown
+nnoremap <C-x> :!./%:r.out
+
 "auto source vimrc
 "--------------------
 autocmd! bufwritepost vimrc source %
+autocmd! bufwritepost *.java :!javac %
 
 "auto delete whitespace
 autocmd bufwritepre * %s/\s\+$//e
-
-"dwmblock autocommand
-autocmd BufWritePost  /home/adam/downs/dwmblocks/config.h !cd ~/home/adam/downs/dwmblocks;     sudo make install && { killall -q dwmblocks;setsid dwmblocks & }
-
-"dwmblock autocommand
-autocmd BufWritePost  ~/suckless/st/config.h !cd ~/suckless/st;     sudo make install
