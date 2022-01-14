@@ -1,0 +1,27 @@
+snippet std
+#include<stdio.h>
+#include<stdlib.h>
+$0
+endsnippet
+
+snippet main
+${1:int }main(${2:args}){
+	${3:code}
+}
+endsnippet
+
+snippet def
+#define ${1:CONSTANT} ${2:value}
+$0
+endsnippet
+
+snippet for "for cycle"
+int $1;
+for($1 = ${2:0};$1 ${3:>} ${4:collection};${1:i}${5:++}){
+	${6:--> code}
+}
+endsnippet
+
+snippet pf "printf()"
+printf(${1:"${2:String}", ${3:vars}});$0
+endsnippet

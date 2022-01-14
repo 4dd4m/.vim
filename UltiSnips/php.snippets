@@ -1,0 +1,121 @@
+snippet pubfun
+public function $1($2){
+	//$3
+
+	$0
+}
+endsnippet
+
+snippet htmlcs
+<!-- $0
+endsnippet
+
+snippet htmlce
+--> $0
+endsnippet
+
+snippet if
+if($1){
+$2
+}
+$0
+endsnippet
+
+snippet loadview
+$this->load->view('$1');
+endsnippet
+
+snippet loadmodel
+$this->load->model('$1');
+endsnippet
+
+snippet loadlibrary
+$this->load->library('$1');
+endsnippet
+
+snippet bold "<b></b>" i
+<b>$1</b>$0
+endsnippet
+
+snippet log "console.log()"
+console.log($0);
+endsnippet
+
+snippet para "<p></p>" i
+<p>$1</p>$0
+endsnippet
+
+snippet php "open tags" w
+<?php
+$0
+?>
+endsnippet
+
+snippet baseurl "<?= baseurl ?>" i
+<?= base_url(); ?>$0
+endsnippet
+
+snippet link
+<a href="$1">$2</a>
+endsnippet
+
+snippet constr "enter constructor"
+function __construct(){
+	parent::__construct();
+	$0
+}
+endsnippet
+
+snippet fun "enter basic function"
+function $1(){
+	$0
+}
+endsnippet
+
+
+snippet li "<li>_</li>"
+<li>$1</li>$0
+endsnippet
+
+snippet eo "echo "
+echo $0
+endsnippet
+
+
+snippet tr
+<tr>
+$1
+</tr>
+endsnippet
+
+snippet td
+<td>$1</td>$0
+endsnippet
+
+
+snippet sot "<?= ?>" w
+<?= $1; ?>
+endsnippet
+
+snippet el "else clause" i
+else{
+	 $0
+	 }
+endsnippet
+
+snippet se "style=''" w
+style="$0"
+endsnippet
+
+snippet th "$this->" i
+$this->$0
+endsnippet
+
+snippet dump "var dump" i
+var_dump($0);
+endsnippet
+
+
+snippet span "span tag" i
+<span id="$1" class="$2">$0</span>
+endsnippet

@@ -1,0 +1,1 @@
+/home/adam/repos/VimDocHu/runtime/syntax/hux.vim

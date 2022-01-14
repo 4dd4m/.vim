@@ -1,0 +1,8 @@
+g:mediawiki_editor_password	mediawiki-editor.txt	/*g:mediawiki_editor_password*
+g:mediawiki_editor_url	mediawiki-editor.txt	/*g:mediawiki_editor_url*
+g:mediawiki_editor_username	mediawiki-editor.txt	/*g:mediawiki_editor_username*
+mediawiki-editor	mediawiki-editor.txt	/*mediawiki-editor*
+mediawiki-editor-configuration	mediawiki-editor.txt	/*mediawiki-editor-configuration*
+mediawiki-editor-installation	mediawiki-editor.txt	/*mediawiki-editor-installation*
+mediawiki-editor-introduction	mediawiki-editor.txt	/*mediawiki-editor-introduction*
+mediawiki-editor-use	mediawiki-editor.txt	/*mediawiki-editor-use*

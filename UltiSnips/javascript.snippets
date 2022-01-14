@@ -1,0 +1,116 @@
+snippet log "" A
+console.log(${1:"$2: " + }${3:variable});$0
+endsnippet
+
+snippet dir "console.dir()"
+console.dir($1);$0
+endsnippet
+
+snippet fun "insert a funtion"
+function ${1:functionName}(${2:param}){
+	$0
+}
+endsnippet
+
+snippet let "let variable = '';" A
+let ${1:variable} = ${2:"${3:String}"};$0
+endsnippet
+
+snippet ajax "Sets up an ajax request" A
+$.ajax({
+    type : "GET",
+    url : "$1",
+    dataType : "json",
+    success: function (data){
+		$0
+}});
+endsnippet
+
+snippet getval "grabs a $().val() to a variable" A
+${1:let }${2:varName} = $('${3:.}$2').val();$0
+endsnippet
+
+snippet setel "let varName = $('.varNamevarName').className('', function(params){work});"  A
+${1:let }${2:varName} = $('${3:.}$2')${4:.${5:className}(${6:'$7',}${8:function(${9:params}){${10:work}}})};$0
+endsnippet
+
+snippet getel "$('.').className('', function(params){work});" A
+$('${2:.}$1')${3:.${4:className}(${5:'$6'}, ${7:function(${8:params}){${9:work}}})};$0
+endsnippet
+
+snippet setval "sets a value for $().val = variableName" A
+$('${2:.}$1').val = ${1:variableName};$0
+endsnippet
+
+snippet if "if" A
+if(${1:condition}){
+	$3
+}${2:else{
+	$4
+}}
+$0
+endsnippet
+
+snippet cond "gives a condition this == that" A
+${1:this} ${2:==} ${3:that}
+endsnippet
+
+snippet elif "else if (condition){}" iA
+else if(${1:condition}){
+	$3
+}${2:else{
+	$4
+}}$0
+endsnippet
+
+
+snippet for "for cycle" A
+for(${1:let} ${2:i}=${3:0};$2 ${4:<} ${5:collection} ;$2${6:++}){
+	$0
+}
+endsnippet
+
+snippet infor "for cycle" A
+for(${1:variable} in  ${2:collection}){
+	$0
+}
+endsnippet
+
+snippet while "while loop" A
+while(${1:condition}){
+	$0
+}
+endsnippet
+
+snippet switch "switch" A
+switch(${1:itemToSwitch}){
+	case $2:
+		$3
+		${4:break;}
+}
+endsnippet
+
+snippet exp "module.exports.$1 = $2;"
+module.exports.${1:asPublic} = ${2:moduleElement};
+endsnippet
+
+snippet req "const $0 = require('$2');" bA
+const ${1:obj} = require('$1');$0
+endsnippet
+
+
+snippet constr "constructor function" A
+constructor(${1:args}){
+$0
+}
+endsnippet
+
+snippet callb "callback" iA
+(err,data) => {
+$0
+}
+endsnippet
+
+snippet texthtml "Content-type:..." Ai
+{'Content-type':'text/html'}$0
+endsnippet

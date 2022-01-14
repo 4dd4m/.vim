@@ -1,0 +1,67 @@
+snippet import "import packages"
+import ${1:packageLocation};$0
+endsnippet
+
+snippet . "insert ->" i
+->$0
+endsnippet
+
+snippet pl "Println"
+System.out.println($0);
+endsnippet
+
+snippet pt "Print"
+System.out.print($0);
+endsnippet
+
+snippet forin "java for in syntax"
+for(${1:type} ${2:variable} : ${3:collection}){
+	$0
+}
+endsnippet
+
+snippet for "for cycle"
+for(${1:int} ${2:i}=${3:0};$2 ${4:<} ${5:collection} ;$2${6:++}){
+	$0
+}
+endsnippet
+
+snippet while
+while(${1:condition}){
+	$0
+}
+endsnippet
+
+snippet sw "switch"
+switch(${1:itemToSwitch}){
+	case $2:
+		$3
+		${4:break;}
+}
+endsnippet
+
+snippet class
+//Author:  Adam T.
+//Created: `date +%d.%m.%Y`
+//ClassDoc
+//--------
+//$1
+//--------
+
+${2:public} class ${3:`!p snip.rv = snip.basename`}{
+
+	public $3(){
+		$4
+	}
+
+	public ${5:static} void main(String args[]){
+		$0
+	}
+}
+endsnippet
+
+snippet main
+public static void main (String args[]){
+	$0
+}
+endsnippet

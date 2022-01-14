@@ -1,0 +1,4 @@
+{
+    "java.home": "/usr/lib/jvm/default",
+    "java.errors.incompleteClasspath.severity": "ignore"
+}

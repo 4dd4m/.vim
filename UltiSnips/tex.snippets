@@ -1,0 +1,206 @@
+snippet code "\code{}"
+\code{${1:Fixed}} $0
+endsnippet
+
+snippet setx "inserts \mathbb" i
+\mathbb{$1} $0
+endsnippet
+
+snippet cap "\cap " Ai
+\cap $0
+endsnippet
+
+snippet ()  "($0)"  Ai
+($1)$0
+endsnippet
+
+snippet (){}  "(\{$0\})"  Ai
+(\\{$1\\})$0
+endsnippet
+
+snippet {}  "\{$0\}"  Ai
+\\{$1\\}$0
+endsnippet
+
+snippet power "\mathcal{P}"
+\mathcal{P} $0
+endsnippet
+
+snippet cup "\cup " Ai
+\cup $0
+endsnippet
+
+snippet math
+\[
+${1:${VISUAL}}
+\]
+$0
+endsnippet
+
+snippet dot "\cdot" Ai
+\cdot $0
+endsnippet
+
+snippet txt "\text" Ai
+${1:${VISUAL}}$0
+endsnippet
+
+snippet ubrace "\underbrace{}_{}" Ai
+\underbrace{${1:${VISUAL}}}_{$2}$0
+endsnippet
+
+
+snippet matrix
+$\begin{pmatrix}
+$1&&\\\
+\end{pmatrix}$0
+endsnippet
+
+snippet up "\usepackage{}"
+\usepackage${1:[${2:options}]}{${3:packageName}}
+$0
+endsnippet
+
+snippet table "create a table"
+\begin{table}[${1:!ht}]
+\centering
+\begin{tabular}{${2:|c|c|c|}}
+\hline
+\textbf{${3:cell}} & \textbf{${4:cell}} & \textbf{${5:cell}}\\\\
+\hline
+& & \\\\
+\hline
+& & \\\\
+\hline
+\end{tabular}
+\caption{${6:caption}}
+\end{table}
+$0
+endsnippet
+
+snippet vsp "\vspace{x px}" A
+\vspace{${1:0.5}cm}
+$0
+endsnippet
+
+snippet hsp "\hspace{x px}" A
+\hspace{${1:0.5}cm}
+$0
+endsnippet
+
+snippet figure "insert a figure"
+\begin{figure}[${1:!ht}]
+	\centering
+	\includegraphics[width=0.8\linewidth]{"${2:filename}"}
+	\caption{${3:caption}}
+	\label{fig:${4:label}}
+\end{figure}
+$0
+endsnippet
+
+snippet sec "open a section"
+\section${1:*}{${2:${VISUAL}}}
+$0
+endsnippet
+
+snippet ssec "\subsection"
+\subsection${1:*}{${2:${VISUAL}}}
+$0
+endsnippet
+
+snippet sssec "\subsection" A
+\subsubsection${1:*}{${2:${VISUAL}}}
+$0
+endsnippet
+
+snippet ce "\ce{} chemical equation"
+\ce{${1:${VISUAL}}}$0
+endsnippet
+
+snippet ch "insert a \ch{}"
+\ch{${1:${VISUAL}}} $0
+endsnippet
+
+snippet bg "Open And close an environment"
+\begin{${1:environment}}
+	${VISUAL}
+\end{$1}
+$0
+endsnippet
+
+snippet begin "Open And close an environment"
+\begin{${1:environment}}
+	${2:${VISUAL}}
+\end{$1}
+$0
+endsnippet
+
+snippet verbatim "\begin{verbatim}"
+\begin{verbatim}
+	${1:${VISUAL}}
+\end{verbatim}
+$0
+endsnippet
+
+snippet beg "Open And close an environment"
+\begin{${1:environment}}
+${0:${VISUAL}}
+\end{$1}
+$0
+endsnippet
+
+snippet center "Open And close an environment"
+\begin{center}
+	${1:${VISUAL}}
+\end{center}
+$0
+endsnippet
+
+snippet br "Opens a new line"
+\newline
+$0
+endsnippet
+
+snippet -> "\rightarrow" Ai
+\rightarrow $0
+endsnippet
+
+snippet circ "\textcircle" 
+\textcircled{${1:${VISUAL}}} $0
+endsnippet
+
+snippet bf "\textbf{}"
+\textbf{${1:${VISUAL}}}$0
+endsnippet
+
+snippet if "\textit{}"
+\textit{${1:${VISUAL}}} $0
+endsnippet
+
+snippet frac "\frac{}{}" Ai
+\frac{$1}{$2}$0
+endsnippet
+
+snippet inm "$ $" A
+$${1:${VISUAL}}$2$ $0
+endsnippet
+
+snippet np "\newpage"
+\newpage
+$0
+endsnippet
+
+snippet cp "\clearpage"
+\clearpage
+$0
+endsnippet
+
+snippet it " \item"
+\item ${1:${VISUAL}}
+$0
+endsnippet
+
+snippet cite "cite"
+\citep${1:*}{${2:id}}
+$0
+endsnippet
