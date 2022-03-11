@@ -1,11 +1,14 @@
 "Sets And Lets
-set title
 filetype plugin indent on
-hi MatchParen cterm=bold ctermbg=red ctermfg=black ctermbg=225 guibg=#2c5d27
 set autoindent tabstop=4 softtabstop=4 expandtab shiftwidth=4
+set exrc secure
 set helplang=hu
 hi clear SpellBad
 hi SpellBad cterm=underline
+set nocursorline
+"hi clear CursorLine
+"hi clear SignColumn
+hi SignColumn ctermbg=none guibg=white
 set laststatus=2
 set completepopup=height:11,width:60,highlight:InfoPopup
 set title
@@ -21,18 +24,33 @@ set backspace=2
 set undofile undodir=~/.vim/undodir
 set wildmenu
 set showcmd
+set updatetime=100
+set path=.,/usr/include,,~/.vim/ftplugin/,~/tmp/nodeApp
+set background=light
 
+"formatting json
+command Pretty !Pretty %:p
+
+if has("gui_gtk3")
+    set guifont=Source\ Code\ Pro\ 16
+    set toolbar=
+    set guioptions=
+    set cmdheight=1
+    :be mswin
+endif
 
 "Open help on vertical split
-cabbrev shelp vert help
+cabbrev vhelp vert help
+cabbrev vh vert help
 
+"common abbrevs
+iabbrev cosnt const
 
 " Mappings to access buffers
 " \l       : list buffers
 " \b \f \g : go back/forward/last-used
 " \1 \2 \3 : go to buffer 1/2/3 etc
-let mapleader = ' ' "Leader key is <SPACE>
-nnoremap <Leader>l :ls<CR>
+let mapleader = ' ' "Leader key is <SPACE>ii
 nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>f :bn<CR>
 nnoremap <Leader>g :e#<CR>
@@ -56,52 +74,64 @@ nnoremap <Leader>17 :17b<CR>
 nnoremap <Leader>18 :18b<CR>
 nnoremap <Leader>19 :19b<CR>
 nnoremap <Leader>20 :20b<CR>
-nnoremap ^Ãº :tag <CR>
 
 nnoremap <leader>n :cn<CR>
 nnoremap <leader>b :cp<CR>
 nnoremap <leader>on :only<CR>
-nnoremap <leader>us :vimgrep <cword> **/*.php<CR>:copen<CR>
 
+nnoremap <leader>us :vimgrep <cword> **/*.php<CR>:copen<CR>
 
 call plug#begin('~/.vim/plugged')
 Plug 'sainnhe/sonokai'
+Plug 'jwalton512/vim-blade', {'for' : 'php'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'lervag/vimtex', { 'for': 'tex', 'tag': 'v1.6' }
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'tex' }
-"Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile','for' :['java','python','py','javascript']}
-"Plug 'VundleVim/Vundle.vim'
-"Plug 'sheerun/vim-polyglot', {'for' : 'c'}
-Plug 'jiangmiao/auto-pairs', {'for' : 'c'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile','for' :['java','python','javascript','php']}
+Plug 'joereynolds/gtags-scope', { 'for' : 'c' }
+Plug 'mattn/emmet-vim' ", {'for' : ['html','php','javascript'] } "Expand by: C-Y + ,
+Plug 'KeitaNakamura/tex-conceal.vim', { 'for': 'tex' }
+Plug 'SirVer/ultisnips', { 'for': ['c','javascript','tex','java','python','sh','bash'] }
+Plug 'vimwiki/vimwiki', {'for' : 'md'}
+Plug 'iamcco/markdown-preview.vim', {'for' : 'md'}
+Plug 'khzaw/vim-conceal'
+Plug 'plasticboy/vim-markdown', {'for' : 'markdown'}
+Plug 'SirVer/ultisnips', {'for' : ['php']}
 Plug 'preservim/nerdtree', {'for' : 'c'}
 Plug 'preservim/tagbar', {'for' : 'c'}
 Plug 'dyng/ctrlsf.vim', {'for' : 'c'}
 Plug 'derekwyatt/vim-fswitch', {'for' : 'c'}
 Plug 'derekwyatt/vim-protodef', {'for' : 'c'}
+Plug 'jiangmiao/auto-pairs', {'for' : ['c','javascript']}
 Plug 'tpope/vim-dispatch', {'for' : 'c'}
-Plug 'metakirby5/codi.vim', {'for' : 'javascript'}
-Plug 'joereynolds/gtags-scope',
-"Plug 'ndrewRadev/switch.vim'
-Plug 'andmarti1424/sc-im'
-"Plug 'khzaw/vim-conceal'
-Plug 'mattn/emmet-vim' ", {'for' : ['html','php'] } "Expand by: C-Y + ,
-"Plug 'metakirby5/codi.vim'
-"Plug 'pangloss/vim-javascript'
-"Plug 'tpope/vim-fugitive'
-"Plug 'honza/vim-snippets'
-"Plug 'iamcco/markdown-preview.vim'
-Plug 'KeitaNakamura/tex-conceal.vim', { 'for': 'tex' }
-Plug 'SirVer/ultisnips', { 'for': ['javascript','tex','java','python','sh','bash'] }
-Plug 'vimwiki/vimwiki'
-
+Plug 'tpope/vim-fugitive',
+Plug 'junegunn/fzf',{ 'do' : { -> fzf#install() }}
+Plug 'junegunn/fzf.vim',
 call plug#end()
 
 "Setup the diff
 nnoremap <F5> <C-w>l<C-w>l:diffoff<CR><c-w>h<c-w>h
-nnoremap <A-v> "+p
+"nnoremap <F8> :e ~/.vim/ftplugin/%:e.vim<CR>
+nnoremap <F8> :vs<CR> :call EditFileType()<CR>
+nnoremap <F8> :call EditFileType()<CR>
 
-nnoremap <F8> :e ~/.vim/ftplugin/%:e.vim<CR>
+"buffer switch
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprev<CR>
+
+function! EditFileType()
+    let b:fileType = expand('%:e')
+    if b:fileType == "js"
+        execute "normal :e ~/.vim/ftplugin/javascript.vim\<CR>"
+    elseif b:fileType == "md"
+        execute "normal :e ~/.vim/ftplugin/markdown.vim\<CR>"
+    else
+        execute "normal :e  ~/.vim/ftplugin/%:e.vim\<CR>"
+    endif
+endfunc
+
+nnoremap <F7> :e ~/.vim/ftplugin/javascript.vim<CR>
 nnoremap <leader><F8> :vs ~/.vim/ftplugin/%:e.vim<CR>
 
 let g:tex_superscripts= "[0-9a-zA-W.,:;+-<>/()=]"
@@ -111,9 +141,10 @@ let g:tex_subscripts= "[0-9aehijklmnoprstuvx,+-/().]"
 "-------------
 "set path+="~/.vim/ftplugin"
 set rtp+="~/.vim/ftplugin/"
-let g:switch_mapping = "Â¬"
+let g:switch_mapping = "|"
 let g:switch_custom_definitions = [
             \   ['or', 'and', 'xor'],
+            \   ['const', 'let', 'var'],
             \   ['.',':','->'],
             \   ['True','False'],
             \   ['minimum','maximum'],
@@ -125,32 +156,26 @@ let g:switch_custom_definitions = [
             \   ['center','left','right','auto'],
             \   ['public','private','protected','static'],]
 
-
 "let g:loaded_python_provider = 1 
 let g:netrw_preview   = 1
 let g:netrw_winsize   = 30
-
 
 "Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let  g:UltiSnipsListSnippets="<c-tab>"
+let g:UltiSnipsListSnippets="<space-tab>"
 let g:UltiSnipsEditSplit="vertical" "ultisnips in split
-let g:ctrlp_map = '<leader>op'
-"CTRL P ignore filetypes
-let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\v[\/]\.(git|hg|svn|images|runtime|)$',
-            \ 'file': '\v\.(fdb_latexmk|log|exe|idx|ind|ilg|pdf|so|toc|dll|aux|fls|gz|bak|bbl|class|out|blg|png|jpg|jpeg)$',
-            \ 'link': '',
-            \ }
-"let g:vimwiki_list = [{'path': '~/dropBox/', 'path_html': '~/public_html/'},
-"            \ {'path': '~/my_docs/', 'ext': '.mdox','css_name' : 'my.css'}]
 
-let g:vimwiki_list = [{'path': '~/dropBox/wiki/vimwiki/', 'path_html':
-            \ '/srv/homepage/network/'}]
+"CtrlP
+set wildignore+=.git/*,.hg/*,.svn/*,*/laravel/mysql/*
+"Laravel
+set wildignore+=*/node_modules/*,*/sotrage/*,*/config/*,*/public/*,*/vendor/*
+set wildignore+=*/sail_mysql/*,*/bootstrap/*,artisan,*lock*,*docker*,*.xml
+let g:ctrlp_map = '<C-p>'
+set t_Co=256
 
-
+nmap <leader>ran :!ranger<CR><CR>
 
 "sorround tags
 nmap <leader>" :norm bi"<esc>ea"<esc>
@@ -161,8 +186,8 @@ nmap <leader>) :norm bi(<esc>ea)<esc>
 nmap <leader>( :norm bi(<esc>ea)<esc>
 nmap <leader>{ :norm bi{<esc>ea}<esc>
 nmap <leader>} :norm bi{<esc>ea}<esc>
+nmap <leader>ex :Explore<cr>
 "Put ; on the end of the line
-nmap <leader>; :norm A;<esc>
 
 "split zoom
 "----------
@@ -215,14 +240,11 @@ nnoremap <leader><F9> :vsp ~/.vimrc<CR>
 nnoremap <Right> :next<cr>
 nnoremap <Left> :prev<cr>
 "Skeletons 
-au! BufNewFile *.sh,*.bash :-1r /home/adam/.vim/templates/sh
-au! BufNewFile *.css :-1r /home/adam/.vim/templates/temp.css
-au! BufNewFile *.php :-1r /home/adam/.vim/templates/temp.php
 au! BufNewFile *.html :-1r /home/adam/.vim/templates/temp.html
 au! BufNewFile *.tex :-1r /home/adam/.vim/templates/temp.tex
-au! BufNewFile,BufReadPost *.sld :source ~/.vim/ftplugin/sld.vim
-"AUTOCOMMANDS
-au! BufEnter *.im :set ft=im
+"resize vim on terminal size change
+au! VimResized * execute "normal! \<c-w>="
+
 "jump to last edited point
 autocmd BufReadPost *
             \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
@@ -234,19 +256,23 @@ autocmd BufReadPost init.vim
             \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
             \ |   exe "normal! g`\""
             \ | endif
+"do not draw screen on running macro
 set lazyredraw
 "
 "auto source vimrc & edit
 "------------------------
 au! BufEnter *.hux :set syntax=hux | set ft=hux
+"au! BufEnter *.js :source /home/adam/.vim/ftplugin/javascript.vim
 au! BufWritePost .vimrc source %
+au! BufWritePost .exrc source %
 au! BufWritePost i3rust silent !i3 restart
+au! BufWritePost httpd.conf silent !web stop && web start
 
-augroup BgHighlight
-    autocmd!
-    autocmd WinEnter * set cul
-    autocmd WinLeave * set nocul
-augroup END
+"augroup BgHighlight
+"    autocmd!
+"    autocmd WinEnter * set cul
+"    autocmd WinLeave * set nocul
+"augroup END
 
 "auto delete whitespace
 "autocmd bufwritepre * %s/\s\+$//e
@@ -254,46 +280,29 @@ augroup END
 "Date Insertion
 command! Date execute "normal i<C-R>=strftime('%F %T')<CR><ESC>"
 "Make tags with Ctags
-command! MakeTags !ctags -R
-"let active=1
-"autocmd InsertEnter * :call IntoInsert(active)
-"autocmd InsertLeave * :call BackFromInsert(active)
-"nnoremap <C-S-H> :let active=1<CR>
-"nnoremap <C-S-E> :let active=0<CR>
-colorscheme sonokai
-function! IntoInsert(active)
-    if a:active
-        set keymap=magyar
-    else
-        set keymap=
-    endif
-endfunction
-function! BackFromInsert(active)
-    set keymap=
-endfunction
-
-iabbrev Ãºn Ãºgynevezett
-let @d="fffdl"
 
 function! HelpOnly()
     :help
     :only
 endfunction
 
-let @q="/h2A  €ýavit:€kl€kl€kl€kl=€kb€kr+1€kr€kr€kr-1 €kbw! %_tag.html:nextgg"
-
-nnoremap <leader>y v$"ay
-nnoremap <leader>p D"apjddk
 nnoremap <leader><right> :right<CR>
 
-
-function! SynStack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+"auto format "for"
+nnoremap <leader>for :call AutoFormat()<CR>
+function! AutoFormat()
+    "With cursor replacement to original
+    execute "normal! mx"
+    execute "normal! gg=G"
+    execute "normal! 'xzz"
 endfunc
 
 "empty (b) or blank (n) lines reduce
 nnoremap ;b   GoZ<Esc>:g/^$/.,/./-j<CR>Gdd
 nnoremap ;n   GoZ<Esc>:g/^[ <Tab>]*$/.,/[^ <Tab>]/-j<CR>Gdd
+
+"change the second "" pair
+:nnoremap c2" 04f"ci"
+"
+"change the third "" pair
+:nnoremap c3" 06f"ci"

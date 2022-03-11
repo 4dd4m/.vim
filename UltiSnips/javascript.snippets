@@ -1,5 +1,5 @@
 snippet log "" A
-console.log(${1:"$2: " + }${3:variable});$0
+console.log($1);$0
 endsnippet
 
 snippet dir "console.dir()"
@@ -10,10 +10,6 @@ snippet fun "insert a funtion"
 function ${1:functionName}(${2:param}){
 	$0
 }
-endsnippet
-
-snippet let "let variable = '';" A
-let ${1:variable} = ${2:"${3:String}"};$0
 endsnippet
 
 snippet ajax "Sets up an ajax request" A
@@ -42,7 +38,7 @@ snippet setval "sets a value for $().val = variableName" A
 $('${2:.}$1').val = ${1:variableName};$0
 endsnippet
 
-snippet if "if" A
+snippet if "if" 
 if(${1:condition}){
 	$3
 }${2:else{
@@ -64,7 +60,7 @@ else if(${1:condition}){
 endsnippet
 
 
-snippet for "for cycle" A
+snippet for "for cycle" 
 for(${1:let} ${2:i}=${3:0};$2 ${4:<} ${5:collection} ;$2${6:++}){
 	$0
 }
@@ -94,7 +90,7 @@ snippet exp "module.exports.$1 = $2;"
 module.exports.${1:asPublic} = ${2:moduleElement};
 endsnippet
 
-snippet req "const $0 = require('$2');" bA
+snippet rreq "const $0 = require('$2');" bA
 const ${1:obj} = require('$1');$0
 endsnippet
 
@@ -113,4 +109,24 @@ endsnippet
 
 snippet texthtml "Content-type:..." Ai
 {'Content-type':'text/html'}$0
+endsnippet
+
+snippet .json "json {}" Ai
+.json({
+	$0
+});
+endsnippet
+
+snippet ({}); "expand" iA
+({$0
+});
+endsnippet
+
+
+
+
+snippet try "try catch" i
+try{
+}catch(e){
+}
 endsnippet
