@@ -1,12 +1,11 @@
-nnoremap <leader>fi :CocAction<CR>
+nnoremap <leaDER>fi :CocAction<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
-set updatetime=50
 set signcolumn=yes
 nnoremap <leader>if /require('\.\//s+11<CR>
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-"
+ 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -30,4 +29,17 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 
 iabbrev Strin, StrinG
-hi SignColumn ctermbg=none guibg=white
+iabbrev <buffer> if "(if)"
+iabbrev <buffer> for "(for,forin)"
+iabbrev <buffer> while "(wh)"
+iabbrev <buffer> switch "(sw)"
+iabbrev <buffer> function "(func,funcv,varrow,funcai)"
+iabbrev <buffer> break "(bk)"
+iabbrev <buffer> else if "(el,elif)"
+iabbrev <buffer> case "(cs)"
+iabbrev <buffer> return "(r)"
+iabbrev <buffer> try{ "(try)"
+iabbrev <buffer> ready "(onload)"
+iabbrev <buffer> continue "(cont)"
+iabbrev <buffer> setTimeout "(tout)"
+

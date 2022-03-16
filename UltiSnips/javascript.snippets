@@ -1,25 +1,74 @@
 snippet log "" A
-console.log($1);$0
+console.log(${VISUAL}${1:"${2:Logged: }" + }${3:item});$0
+endsnippet
+
+snippet tert "tertiary operator"
+let ${1:variable} = ${2:condition} ? ${3:true} : ${4:false};
+$0
 endsnippet
 
 snippet dir "console.dir()"
-console.dir($1);$0
+console.dir(${VISUAL}$1);$0
 endsnippet
 
-snippet fun "insert a funtion"
-function ${1:functionName}(${2:param}){
-	$0
+snippet func "insert a funtion" i
+function ${1:Name}(${2:Parameters}){
+	${VISUAL}$3
 }
+$0
 endsnippet
 
-snippet ajax "Sets up an ajax request" A
+snippet varrow "arrow function to variable"
+let ${1:variable} = (${2:params}) =>{
+$3
+};
+$0
+endsnippet
+
+snippet funcai "automatically invoked function"
+(function () {
+	$1
+});
+$0
+endsnippet
+
+snippet funcv "var x = function()"
+let ${1:variable}  = function ${2:Name}(${3:Parameters}){
+	${VISUAL}$4
+}
+$0
+endsnippet
+
+snippet tout "timeout function" i
+setTimeout(${VISUAL}${1:callback()}, ${2:ms});
+$0
+endsnippet
+
+snippet ajax "Sets up an ajax request" i
 $.ajax({
-    type : "GET",
-    url : "$1",
-    dataType : "json",
+    type : "${1:GET}",
+    url : "$2",
+    dataType : "${3:json}",
     success: function (data){
 		$0
 }});
+endsnippet
+
+snippet ajaxv "Sets up an ajax request" i
+let ${1:variable} = $.ajax({
+	type : "${1:GET}",
+	url : "$2",
+	dataType : "${3:json}",
+	success: function (data){
+		$0
+}});
+endsnippet
+
+snippet error "error:function()" i
+error : function(${1:data}){
+	$2
+},
+$0
 endsnippet
 
 snippet getval "grabs a $().val() to a variable" A
@@ -27,106 +76,138 @@ ${1:let }${2:varName} = $('${3:.}$2').val();$0
 endsnippet
 
 snippet setel "let varName = $('.varNamevarName').className('', function(params){work});"  A
-${1:let }${2:varName} = $('${3:.}$2')${4:.${5:className}(${6:'$7',}${8:function(${9:params}){${10:work}}})};$0
+${1:let }${2:varName} = $('${3:.}$2')${4:.${5:className}(${6:'$7',}${8:function(${9:params}){
+${10:work}
+}})};
+$0
 endsnippet
 
 snippet getel "$('.').className('', function(params){work});" A
-$('${2:.}$1')${3:.${4:className}(${5:'$6'}, ${7:function(${8:params}){${9:work}}})};$0
+$('${2:.}$1')${3:.${4:className}(${5:'$6'}, ${7:function(${8:params}){
+${9:...code...}
+}})};
+$0
 endsnippet
 
 snippet setval "sets a value for $().val = variableName" A
 $('${2:.}$1').val = ${1:variableName};$0
 endsnippet
 
-snippet if "if" 
+snippet if "if" i
 if(${1:condition}){
-	$3
-}${2:else{
-	$4
-}}
+	${VISUAL}$3
+}
 $0
 endsnippet
 
-snippet cond "gives a condition this == that" A
-${1:this} ${2:==} ${3:that}
+snippet el "else" i
+else{
+	${VISUAL}$1
+}
+$0
 endsnippet
 
-snippet elif "else if (condition){}" iA
+snippet elif "else if (condition){}" i
 else if(${1:condition}){
-	$3
-}${2:else{
-	$4
-}}$0
+	${VISUAL}$2
+}
+$0
 endsnippet
-
 
 snippet for "for cycle" 
 for(${1:let} ${2:i}=${3:0};$2 ${4:<} ${5:collection} ;$2${6:++}){
-	$0
+	${VISUAL}$7
 }
+$0
 endsnippet
 
-snippet infor "for cycle" A
+snippet forin "for cycle" 
 for(${1:variable} in  ${2:collection}){
-	$0
+	${VISUAL}$1
 }
+$0
 endsnippet
 
-snippet while "while loop" A
+snippet wh "while loop" 
 while(${1:condition}){
-	$0
+	${VISUAL}$1
 }
+$0
 endsnippet
 
-snippet switch "switch" A
-switch(${1:itemToSwitch}){
-	case $2:
+snippet sw "switch" 
+switch(${1:variable}){
+	case ${2:Condition}:
 		$3
 		${4:break;}
-}
+	$5}
+$0
+endsnippet
+
+snippet r "return"
+return ${VISUAL}$1;$0
+endsnippet
+
+snippet cs "case" 
+case ${1:Condition}:
+	$2
+	${3:break;}
+$4}
+$0
+endsnippet
+
+snippet bk "break"
+break;
+$0
 endsnippet
 
 snippet exp "module.exports.$1 = $2;"
 module.exports.${1:asPublic} = ${2:moduleElement};
 endsnippet
 
-snippet rreq "const $0 = require('$2');" bA
+snippet rreq "const $0 = require('$2');" b
 const ${1:obj} = require('$1');$0
 endsnippet
 
-
-snippet constr "constructor function" A
+snippet constr "constructor function" i
 constructor(${1:args}){
 $0
 }
 endsnippet
 
-snippet callb "callback" iA
-(err,data) => {
-$0
+snippet callb "callback" i
+(${1:err,data}) => {
+${VISUAL}$0
 }
 endsnippet
 
-snippet texthtml "Content-type:..." Ai
+snippet texthtml "Content-type:..." i
 {'Content-type':'text/html'}$0
 endsnippet
 
-snippet .json "json {}" Ai
+snippet json "json {}" i
 .json({
 	$0
 });
 endsnippet
 
-snippet ({}); "expand" iA
-({$0
+snippet try "try catch" i
+try{
+	$1
+}catch(${2:Exception}){
+	$3
+}
+$0
+endsnippet
+
+snippet onload "onload"
+$(document).ready(function() {
+	${VISUAL}
 });
 endsnippet
 
-
-
-
-snippet try "try catch" i
-try{
-}catch(e){
-}
+snippet cont "continue"
+continue;
+$0
 endsnippet
+

@@ -6,12 +6,9 @@ set helplang=hu
 hi clear SpellBad
 hi SpellBad cterm=underline
 set nocursorline
-"hi clear CursorLine
-"hi clear SignColumn
-hi SignColumn ctermbg=none guibg=white
 set laststatus=2
 set completepopup=height:11,width:60,highlight:InfoPopup
-set title
+set magic
 set ignorecase smartcase nohlsearch incsearch
 set linebreak wrap wrapscan
 set nocompatible
@@ -24,9 +21,11 @@ set backspace=2
 set undofile undodir=~/.vim/undodir
 set wildmenu
 set showcmd
-set updatetime=100
+"set updatetime=100
 set path=.,/usr/include,,~/.vim/ftplugin/,~/tmp/nodeApp
 set background=light
+
+nnoremap / /\v
 
 "formatting json
 command Pretty !Pretty %:p
@@ -97,7 +96,6 @@ Plug 'vimwiki/vimwiki', {'for' : 'md'}
 Plug 'iamcco/markdown-preview.vim', {'for' : 'md'}
 Plug 'khzaw/vim-conceal'
 Plug 'plasticboy/vim-markdown', {'for' : 'markdown'}
-Plug 'SirVer/ultisnips', {'for' : ['php']}
 Plug 'preservim/nerdtree', {'for' : 'c'}
 Plug 'preservim/tagbar', {'for' : 'c'}
 Plug 'dyng/ctrlsf.vim', {'for' : 'c'}
@@ -120,6 +118,14 @@ nnoremap <F8> :call EditFileType()<CR>
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprev<CR>
 
+"change in last text objects
+onoremap il) :normal! $F)vi)<cr>
+onoremap il" :normal! $F"vi"<cr>
+onoremap il' :normal! $F'vi'<cr>
+
+onoremap in@ :normal! /\v[A-z0-9._]*\@.*\.[a-z]{2,3}\r
+nnoremap <f4> :execute ":normal! /^\\zs[A-z0-9._]*\\ze\@.*\.[a-z]*$\rcgn"<CR>
+
 function! EditFileType()
     let b:fileType = expand('%:e')
     if b:fileType == "js"
@@ -130,6 +136,8 @@ function! EditFileType()
         execute "normal :e  ~/.vim/ftplugin/%:e.vim\<CR>"
     endif
 endfunc
+
+"magicalcritic@gmail.com
 
 nnoremap <F7> :e ~/.vim/ftplugin/javascript.vim<CR>
 nnoremap <leader><F8> :vs ~/.vim/ftplugin/%:e.vim<CR>
@@ -169,11 +177,13 @@ let g:UltiSnipsEditSplit="vertical" "ultisnips in split
 
 "CtrlP
 set wildignore+=.git/*,.hg/*,.svn/*,*/laravel/mysql/*
+set wildignore+=~/windows/*
 "Laravel
 set wildignore+=*/node_modules/*,*/sotrage/*,*/config/*,*/public/*,*/vendor/*
 set wildignore+=*/sail_mysql/*,*/bootstrap/*,artisan,*lock*,*docker*,*.xml
 let g:ctrlp_map = '<C-p>'
 set t_Co=256
+colorscheme sonokai
 
 nmap <leader>ran :!ranger<CR><CR>
 
@@ -233,50 +243,51 @@ noremap Q gq
 nnoremap <F9> :e ~/.vimrc<CR>
 nnoremap <leader><F9> :vsp ~/.vimrc<CR>
 
+"do not draw screen on running macro
+set lazyredraw
+
 "insert mode cursor movement up and down
 "inoremap <C-j> <Down>
 "inoremap <C-k> <Up>
 
 nnoremap <Right> :next<cr>
 nnoremap <Left> :prev<cr>
-"Skeletons 
-au! BufNewFile *.html :-1r /home/adam/.vim/templates/temp.html
-au! BufNewFile *.tex :-1r /home/adam/.vim/templates/temp.tex
-"resize vim on terminal size change
-au! VimResized * execute "normal! \<c-w>="
+augroup testgroup
+"skeletons
+    autocmd!
+    au! BufNewFile *.html :-1r /home/adam/.vim/templates/temp.html
+    au! BufNewFile *.tex :-1r /home/adam/.vim/templates/temp.tex
+    "resize vim on terminal size change
+    au! BufWritePost UltiSnips/*.snippets execute :call UltiSnips#RefreshSnippets()
+    au! VimResized * execute "normal! \<c-w>="
+    "
+    "auto source vimrc & edit
+    "------------------------
+    au! BufEnter *.hux :set syntax=hux | set ft=hux
+    "au! BufEnter *.js :source /home/adam/.vim/ftplugin/javascript.vim
+    au! BufWritePost .vimrc source %
+    au! BufWritePost .exrc source %
+    au! BufWritePost i3rust silent !i3 restart
+    au! BufWritePost httpd.conf silent !web stop && web start
+augroup END
 
-"jump to last edited point
-autocmd BufReadPost *
-            \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-            \ |   exe "normal! g`\""
-            \ | endif
 
-"jump to last edited point in vimrc
-autocmd BufReadPost init.vim
-            \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-            \ |   exe "normal! g`\""
-            \ | endif
-"do not draw screen on running macro
-set lazyredraw
-"
-"auto source vimrc & edit
-"------------------------
-au! BufEnter *.hux :set syntax=hux | set ft=hux
-"au! BufEnter *.js :source /home/adam/.vim/ftplugin/javascript.vim
-au! BufWritePost .vimrc source %
-au! BufWritePost .exrc source %
-au! BufWritePost i3rust silent !i3 restart
-au! BufWritePost httpd.conf silent !web stop && web start
 
-"augroup BgHighlight
-"    autocmd!
-"    autocmd WinEnter * set cul
-"    autocmd WinLeave * set nocul
-"augroup END
+augroup cursorOnTheSamePlace
+    "jump to last edited point
+    autocmd!
+    autocmd BufReadPost *
+                \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+                \ |   exe "normal! g`\""
+                \ | endif
 
-"auto delete whitespace
-"autocmd bufwritepre * %s/\s\+$//e
-"Custom Commands functions
+    "jump to last edited point in vimrc
+    autocmd BufReadPost init.vim
+                \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+                \ |   exe "normal! g`\""
+                \ | endif
+augroup END
+
 "Date Insertion
 command! Date execute "normal i<C-R>=strftime('%F %T')<CR><ESC>"
 "Make tags with Ctags
