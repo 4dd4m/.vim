@@ -80,9 +80,14 @@ nnoremap <leader>on :only<CR>
 
 nnoremap <leader>us :vimgrep <cword> **/*.php<CR>:copen<CR>
 
+"WINDIOWS CONFIG
 if has("win32")
+    nnoremap <F9> :e ~/_vimrc<CR>
+    let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit="~/.vim/UltiSnips"
     call plug#begin('~/vimfiles/autoload')
+"LINUX CONFIG
 else
+    nnoremap <F9> :e ~/.vimrc<CR>
     call plug#begin('~/.vim/plugged')
 endif
 Plug 'sainnhe/sonokai'
@@ -254,7 +259,6 @@ nnoremap YY ZZ
 "EX <-----> Format
 noremap gQ Q
 noremap Q gq
-nnoremap <F9> :e ~/.vimrc<CR>
 nnoremap <leader><F9> :vsp ~/.vimrc<CR>
 
 "do not draw screen on running macro
