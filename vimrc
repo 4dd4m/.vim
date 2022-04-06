@@ -80,8 +80,13 @@ nnoremap <leader>on :only<CR>
 
 nnoremap <leader>us :vimgrep <cword> **/*.php<CR>:copen<CR>
 
-
-call plug#begin('~/.vim/plugged')
+if has("win32")
+    set shellslash
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin('~/.vim/bundle')
+else
+    call plug#begin('~/.vim/plugged')
+endif
 Plug 'sainnhe/sonokai'
 Plug 'jwalton512/vim-blade', {'for' : 'php'}
 Plug 'ctrlpvim/ctrlp.vim'
