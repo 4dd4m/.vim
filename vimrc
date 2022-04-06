@@ -81,9 +81,7 @@ nnoremap <leader>on :only<CR>
 nnoremap <leader>us :vimgrep <cword> **/*.php<CR>:copen<CR>
 
 if has("win32")
-    set shellslash
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin('~/.vim/bundle')
+    call plug#begin('~/vimfiles/autoload')
 else
     call plug#begin('~/.vim/plugged')
 endif
