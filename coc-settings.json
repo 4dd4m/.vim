@@ -6,5 +6,7 @@
     "snippets.ultisnips.direcotries":[
         "UltiSnips",
         "~/.vim/Ultisnips"
-    ]
+    ],
+    "tsserver.locale" : "hu",
+    "javascript.validate.enable" : true
 }

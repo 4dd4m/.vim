@@ -1,10 +1,22 @@
-nnoremap <leaDER>fi :CocAction<CR>
+nnoremap <leaDER>fix :CocAction<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
 set signcolumn=yes
 nnoremap <leader>if /require('\.\//s+11<CR>
 
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+inoremap <silent><expr> <c-TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR><C-R>=AutoPairsReturn()<CR>"
+
+augroup pairs
+let b:AutoPairs = AutoPairsDefine({'<?' : '?>', '<?php': '?>', '<td>' : '<\td>'})
+augroup END
+
+nmap <silent> cdn <Plug>(coc-diagnostic-prev)
+nmap <silent> cdp <Plug>(coc-diagnostic-next)
  
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -29,7 +41,6 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 
 iabbrev Strin, StrinG
-iabbrev <buffer> if "(if)"
 iabbrev <buffer> for "(for,forin)"
 iabbrev <buffer> while "(wh)"
 iabbrev <buffer> switch "(sw)"

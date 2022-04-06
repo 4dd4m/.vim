@@ -3,8 +3,8 @@ filetype plugin indent on
 set autoindent tabstop=4 softtabstop=4 expandtab shiftwidth=4
 set exrc secure
 set helplang=hu
-hi clear SpellBad
-hi SpellBad cterm=underline
+"hi clear SpellBad
+"hi SpellBad cterm=underline
 set nocursorline
 set laststatus=2
 set completepopup=height:11,width:60,highlight:InfoPopup
@@ -80,6 +80,7 @@ nnoremap <leader>on :only<CR>
 
 nnoremap <leader>us :vimgrep <cword> **/*.php<CR>:copen<CR>
 
+
 call plug#begin('~/.vim/plugged')
 Plug 'sainnhe/sonokai'
 Plug 'jwalton512/vim-blade', {'for' : 'php'}
@@ -88,6 +89,7 @@ Plug 'lervag/vimtex', { 'for': 'tex', 'tag': 'v1.6' }
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'tex' }
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile','for' :['java','python','javascript','php']}
+cabbrev cocjson :e ~/.vim/coc-settings.json<CR>
 Plug 'joereynolds/gtags-scope', { 'for' : 'c' }
 Plug 'mattn/emmet-vim' ", {'for' : ['html','php','javascript'] } "Expand by: C-Y + ,
 Plug 'KeitaNakamura/tex-conceal.vim', { 'for': 'tex' }
@@ -101,13 +103,22 @@ Plug 'preservim/tagbar', {'for' : 'c'}
 Plug 'dyng/ctrlsf.vim', {'for' : 'c'}
 Plug 'derekwyatt/vim-fswitch', {'for' : 'c'}
 Plug 'derekwyatt/vim-protodef', {'for' : 'c'}
-Plug 'jiangmiao/auto-pairs', {'for' : ['c','javascript']}
+Plug 'jiangmiao/auto-pairs', 
 Plug 'tpope/vim-dispatch', {'for' : 'c'}
 Plug 'tpope/vim-fugitive',
 Plug 'junegunn/fzf',{ 'do' : { -> fzf#install() }}
 Plug 'junegunn/fzf.vim',
 call plug#end()
 
+hi CocErrorHighlight term=reverse ctermfg=235 ctermbg=203 guifg=#2c2e34 guibg=#ff6077
+" Show syntax highlighting groups for word under cursor
+nmap <F2> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 "Setup the diff
 nnoremap <F5> <C-w>l<C-w>l:diffoff<CR><c-w>h<c-w>h
 "nnoremap <F8> :e ~/.vim/ftplugin/%:e.vim<CR>
@@ -169,12 +180,12 @@ let g:netrw_preview   = 1
 let g:netrw_winsize   = 30
 
 "Plug 'SirVer/ultisnips'
+cabbrev snips echom g:UltiSnipsListSnippets<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsListSnippets="<space-tab>"
+let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsEditSplit="vertical" "ultisnips in split
-
 "CtrlP
 set wildignore+=.git/*,.hg/*,.svn/*,*/laravel/mysql/*
 set wildignore+=~/windows/*

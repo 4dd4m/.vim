@@ -1,5 +1,5 @@
-snippet log "" A
-console.log(${VISUAL}${1:"${2:Logged: }" + }${3:item});$0
+snippet log "console.log()" A
+console.log(${1:"${2:What?}: " +}${VISUAL}$3);$0
 endsnippet
 
 snippet tert "tertiary operator"
@@ -8,7 +8,7 @@ $0
 endsnippet
 
 snippet dir "console.dir()"
-console.dir(${VISUAL}$1);$0
+console.dir(${1:"${2:What?}: " +}${VISUAL}$3);$0
 endsnippet
 
 snippet func "insert a funtion" i
@@ -20,7 +20,7 @@ endsnippet
 
 snippet varrow "arrow function to variable"
 let ${1:variable} = (${2:params}) =>{
-$3
+	$3
 };
 $0
 endsnippet
@@ -35,16 +35,16 @@ endsnippet
 snippet funcv "var x = function()"
 let ${1:variable}  = function ${2:Name}(${3:Parameters}){
 	${VISUAL}$4
-}
+};
 $0
 endsnippet
 
-snippet tout "timeout function" i
+snippet tout "timeout function" 
 setTimeout(${VISUAL}${1:callback()}, ${2:ms});
 $0
 endsnippet
 
-snippet ajax "Sets up an ajax request" i
+snippet ajax "Sets up an ajax request" 
 $.ajax({
     type : "${1:GET}",
     url : "$2",
@@ -54,7 +54,7 @@ $.ajax({
 }});
 endsnippet
 
-snippet ajaxv "Sets up an ajax request" i
+snippet ajaxv "Sets up an ajax request" 
 let ${1:variable} = $.ajax({
 	type : "${1:GET}",
 	url : "$2",
@@ -64,36 +64,40 @@ let ${1:variable} = $.ajax({
 }});
 endsnippet
 
-snippet error "error:function()" i
+snippet error "error:function()" 
 error : function(${1:data}){
 	$2
 },
 $0
 endsnippet
 
+snippet $ "$('')."
+$('${1:#selector}').$0
+endsnippet
+
 snippet getval "grabs a $().val() to a variable" A
-${1:let }${2:varName} = $('${3:.}$2').val();$0
+${1:let }${2:varName} = $('${3:#selector}').val();$0
 endsnippet
 
 snippet setel "let varName = $('.varNamevarName').className('', function(params){work});"  A
-${1:let }${2:varName} = $('${3:.}$2')${4:.${5:className}(${6:'$7',}${8:function(${9:params}){
+${1:let }${2:varName} = $('${3:#selector}')${4:.${5:className}(${6:'$7',}${8:function(${9:params}){
 ${10:work}
 }})};
 $0
 endsnippet
 
 snippet getel "$('.').className('', function(params){work});" A
-$('${2:.}$1')${3:.${4:className}(${5:'$6'}, ${7:function(${8:params}){
+$('${2:#selector}')${3:.${4:className}(${5:'$6'}, ${7:function(${8:params}){
 ${9:...code...}
 }})};
 $0
 endsnippet
 
 snippet setval "sets a value for $().val = variableName" A
-$('${2:.}$1').val = ${1:variableName};$0
+$('${1:.}$2').val = ${2:variableName};$0
 endsnippet
 
-snippet if "if" i
+snippet if "if" A
 if(${1:condition}){
 	${VISUAL}$3
 }
@@ -156,10 +160,6 @@ $4}
 $0
 endsnippet
 
-snippet bk "break"
-break;
-$0
-endsnippet
 
 snippet exp "module.exports.$1 = $2;"
 module.exports.${1:asPublic} = ${2:moduleElement};
@@ -211,3 +211,7 @@ continue;
 $0
 endsnippet
 
+snippet bk "break"
+break;
+$0
+endsnippet
