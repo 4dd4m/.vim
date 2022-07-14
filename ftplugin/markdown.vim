@@ -1,5 +1,23 @@
-set conceallevel=2
+nnoremap <F8> :e ~/.vim/ftplugin/vimwiki.vim<CR>
+nnoremap <F1> :call CheckSpell()<CR>
+set spelllang=en
+set spell
 
-nnoremap <CR> :call aMarkdown#OpenLink()<CR>
-nnoremap <BS> :call aMarkdown#GoBack()<CR>
-nnoremap <leader>no :call aMarkdown#OpenIndex()<CR>
+hi Cursor guifg=white guibg=white 
+
+let g:vimwiki_conceallevel=2
+let g:vimwiki_conceal_onechar_markers=1
+
+
+function! CheckSpell()
+set spell!
+if &spell == "nospell"
+    echo "Spell OFF"
+else
+    echo "Spell ON"
+endif
+endfunc
+
+xnoremap <leader>js :!wrap js<CR>
+set nonumber
+set norelativenumber

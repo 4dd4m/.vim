@@ -34,28 +34,6 @@ nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 "nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
-
-ab Int Integer
-ab Strong String
-ab arg args[]
-ab args args[]
-ab boo Boolean
-ab bool Boolean
-ab cl class
-ab cseq CharSequence
-ab db double
-ab fin final
-ab list ArrayList<><left>
-ab pub public
-ab retrun return;<left>
-ab sta static
-ab str String
-ab string String
-ab sseq subSequence();<left><left>
-ab tostr toString()
-ab getcl getClass()
-
-
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8

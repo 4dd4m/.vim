@@ -16,6 +16,10 @@ def __str__(self):
 	$0
 endsnippet
 
+snippet func "func(visual)"
+${1:functionName}(${VISUAL})$0
+endsnippet
+
 snippet namemain
 if __name__ == '__main__':
 	$0
@@ -33,8 +37,8 @@ for ${1:item} in ${2:collection}:
 	${3:Do This}
 endsnippet
 
-snippet pt "print(x)"
-print(${1:str})$0
+snippet p "print(x)"
+print(${VISUAL}$1)$0
 endsnippet
 
 snippet fmt ".format()" i
@@ -51,4 +55,19 @@ endsnippet
 
 snippet doc
 """$1"""$0
+endsnippet
+
+snippet try "try except block"
+try:
+	${VISUAL}
+except $1:
+	$0	
+endsnippet
+
+snippet r "return"
+return $0
+endsnippet
+
+snippet nn "None"
+None $0
 endsnippet

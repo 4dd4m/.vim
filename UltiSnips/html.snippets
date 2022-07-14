@@ -1,7 +1,11 @@
 snippet  div "Enter a div tag" b
 <div id="$1" class="$2">
-	$0
+	${3:VISUAL}
 </div>
+endsnippet
+
+snippet %% "open tag {% %}" Ai
+{% $1 %}$0
 endsnippet
 
 snippet . "insert ->" i

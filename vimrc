@@ -1,15 +1,17 @@
-"Sets And Lets
 filetype plugin indent on
-set autoindent tabstop=4 softtabstop=4 expandtab shiftwidth=4
+let mapleader = '\' "Leader key is <SPACE>ii
+""Sets And Lets
+set termguicolors
+set smartindent tabstop=4 softtabstop=4 expandtab shiftwidth=4
 set exrc secure
 set helplang=hu
-"hi clear SpellBad
-"hi SpellBad cterm=underline
+set spelllang=en
 set nocursorline
 set laststatus=2
-set completepopup=height:11,width:60,highlight:InfoPopup
+"set completepopup=height:11,width:60,highlight:InfoPopup
+set signcolumn=no
 set magic
-set ignorecase smartcase nohlsearch incsearch
+set ignorecase smartcase incsearch 
 set linebreak wrap wrapscan
 set nocompatible
 set noswapfile nobackup nowritebackup
@@ -18,105 +20,137 @@ set autowriteall
 set ruler
 set splitbelow splitright
 set backspace=2
+set updatetime=100
 set undofile undodir=~/.vim/undodir
 set wildmenu
 set showcmd
-"set updatetime=100
-set path=.,/usr/include,,~/.vim/ftplugin/,~/tmp/nodeApp
-set background=light
+"set path=.,/usr/include,,~/.vim/ftplugin/,~/tmp/nodeApp
+set background=dark
+set nofoldenable
+set autoread
+set autowrite
 
-nnoremap / /\v
-
-"formatting json
+""formatting json
 command Pretty !Pretty %:p
 
-if has("gui_gtk3")
-    set guifont=Source\ Code\ Pro\ 16
-    set toolbar=
-    set guioptions=
-    set cmdheight=1
-    :be mswin
-endif
-
-"Open help on vertical split
-cabbrev vhelp vert help
-cabbrev vh vert help
-
-"common abbrevs
-iabbrev cosnt const
-
-" Mappings to access buffers
-" \l       : list buffers
-" \b \f \g : go back/forward/last-used
-" \1 \2 \3 : go to buffer 1/2/3 etc
-let mapleader = ' ' "Leader key is <SPACE>ii
-nnoremap <Leader>b :bp<CR>
-nnoremap <Leader>f :bn<CR>
-nnoremap <Leader>g :e#<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
-nnoremap <Leader>11 :11b<CR>
-nnoremap <Leader>12 :12b<CR>
-nnoremap <Leader>13 :13b<CR>
-nnoremap <Leader>14 :14b<CR>
-nnoremap <Leader>15 :15b<CR>
-nnoremap <Leader>16 :16b<CR>
-nnoremap <Leader>17 :17b<CR>
-nnoremap <Leader>18 :18b<CR>
-nnoremap <Leader>19 :19b<CR>
-nnoremap <Leader>20 :20b<CR>
-
+nnoremap <leader>/ :nohl<CR>
+nnoremap <Leader>\ :Buffers<CR>
 nnoremap <leader>n :cn<CR>
 nnoremap <leader>b :cp<CR>
 nnoremap <leader>on :only<CR>
-
 nnoremap <leader>us :vimgrep <cword> **/*.php<CR>:copen<CR>
 
-"WINDIOWS CONFIG
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+"set guicursor+=i:blinkwait10
+
+"WINDOWS PLUG
 if has("win32")
     nnoremap <F9> :e ~/_vimrc<CR>
     let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit="~/.vim/UltiSnips"
     call plug#begin('~/vimfiles/autoload')
-"LINUX CONFIG
+    "GUI
+    if has("gui")
+        set guifont=Source\ Code\ Pro\ 16
+        set toolbar=
+        set guioptions=
+        set cmdheight=1
+        :be mswin
+        highlight Cursor guifg=white guibg=black
+        highlight iCursor guifg=white guibg=steelblue
+
+endif
+"LINUX PLUG
 else
     nnoremap <F9> :e ~/.vimrc<CR>
     call plug#begin('~/.vim/plugged')
 endif
+call plug#begin('~/.vim/plugged')
 Plug 'sainnhe/sonokai'
-Plug 'jwalton512/vim-blade', {'for' : 'php'}
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'lervag/vimtex', { 'for': 'tex', 'tag': 'v1.6' }
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'tex' }
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile','for' :['java','python','javascript','php']}
-cabbrev cocjson :e ~/.vim/coc-settings.json<CR>
-Plug 'joereynolds/gtags-scope', { 'for' : 'c' }
-Plug 'mattn/emmet-vim' ", {'for' : ['html','php','javascript'] } "Expand by: C-Y + ,
-Plug 'KeitaNakamura/tex-conceal.vim', { 'for': 'tex' }
-Plug 'SirVer/ultisnips', { 'for': ['c','javascript','tex','java','python','sh','bash'] }
-Plug 'vimwiki/vimwiki', {'for' : 'md'}
-Plug 'iamcco/markdown-preview.vim', {'for' : 'md'}
-Plug 'khzaw/vim-conceal'
-Plug 'plasticboy/vim-markdown', {'for' : 'markdown'}
-Plug 'preservim/nerdtree', {'for' : 'c'}
-Plug 'preservim/tagbar', {'for' : 'c'}
-Plug 'dyng/ctrlsf.vim', {'for' : 'c'}
-Plug 'derekwyatt/vim-fswitch', {'for' : 'c'}
-Plug 'derekwyatt/vim-protodef', {'for' : 'c'}
-Plug 'jiangmiao/auto-pairs', 
-Plug 'tpope/vim-dispatch', {'for' : 'c'}
-Plug 'tpope/vim-fugitive',
-Plug 'junegunn/fzf',{ 'do' : { -> fzf#install() }}
+"SYSTEM RELATED
+"Plug 'junegunn/fzf',{ 'do' : { -> fzf#install() }}
 Plug 'junegunn/fzf.vim',
+Plug 'sheerun/vim-polyglot',
+Plug 'jiangmiao/auto-pairs', 
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutBackInsert = '<leader><BS>'
+let g:AutoPairsShortcutToggle = '<leader>m'
+
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'branch': 'release/0.x',
+  \ 'for' : ['javascript', 'markdown', 'vimwiki', 'html', 'typescript', 'bash']
+  \ }
+
+let g:prettier#config#print_width = 80
+
+"JAVASCRIPT RELATED
+"Plug 'leafOfTree/vim-vue-plugin', {'for': 'vue'}
+
+"Plug 'khzaw/vim-conceal'
+"MARKDOWN RELATED
+Plug 'plasticboy/vim-markdown', {'for' : 'markdown'}
+Plug 'iamcco/markdown-preview.vim',{ 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug','md']}
+"Plug 'KeitaNakamura/tex-conceal.vim', { 'for': ['tex', 'markdown']}
+"Plug 'vimwiki/vimwiki', 
+"Plug 'lervag/vimtex', { 'for': 'tex', 'tag': 'v1.6' }
+"Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+"Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'tex' }
+
+
+"DEV RELATED
+Plug 'SirVer/ultisnips'," { 'for': ['c','javascript','js','tex','java','python','sh','bash','html','vue'] }
+"Plug 'mattn/emmet-vim' ", {'for' : ['html','php','javascript','vue'] } "Expand by: C-Y + ,
+Plug 'neoclide/coc.nvim', {'branch': 'release','for' :['java','python','javascript','js','typescript','php','html','vue']}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'},
+"Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
+Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'tpope/vim-fugitive',
+"Plug 'jwalton512/vim-blade', {'for' : 'php'}
+
 call plug#end()
+colorscheme sonokai
+
+"hi clear SpellBad
+"hi SpellBad term=reverse ctermbg=9 gui=undercurl guisp=Red
+"hi CocUnusedHighlight term=reverse gui=undercurl ctermbg=214 ctermfg=16
+"hi javascriptScriptBlock cterm=bold ctermfg=110 gui=bold guifg=#76cce0
+
+let g:vim_vue_plugin_load_full_syntax = 0
+let g:vim_vue_plugin_highlight_vue_attr = 0
+let g:vim_vue_plugin_config = { 
+      \'syntax': {
+      \   'template': ['html'],
+      \   'script': ['javascript', 'typescript'],
+      \   'style': ['css', 'scss', 'sass', 'less'],
+      \   'i18n': ['json', 'yaml'],
+      \   'route': 'json',
+      \},
+      \'full_syntax': ['json'],
+      \'initial_indent': ['i18n', 'i18n.json', 'yaml'],
+      \'attribute': 1,
+      \'keyword': 1,
+      \'foldexpr': 1,
+      \'debug': 0,
+      \}
+
+"Markdown Preview
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 0
+let g:mkdp_theme = 'dark'
+
+
+let g:LanguageClient_serverCommands = {
+    \ 'vue': ['vls']
+    \ }
 
 hi CocErrorHighlight term=reverse ctermfg=235 ctermbg=203 guifg=#2c2e34 guibg=#ff6077
 " Show syntax highlighting groups for word under cursor
@@ -127,48 +161,37 @@ function! <SID>SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-"Setup the diff
-nnoremap <F5> <C-w>l<C-w>l:diffoff<CR><c-w>h<c-w>h
-"nnoremap <F8> :e ~/.vim/ftplugin/%:e.vim<CR>
-nnoremap <F8> :vs<CR> :call EditFileType()<CR>
-nnoremap <F8> :call EditFileType()<CR>
 
-"buffer switch
+"Setup the diff | Used for VimDocHu
+"nnoremap <F5> <C-w>l<C-w>l:diffoff<CR><c-w>h<c-w>h
+nnoremap <F8> :e ~/.vim/ftplugin/%:e.vim<CR>
+
+"next match
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprev<CR>
 
 "change in last text objects
-onoremap il) :normal! $F)vi)<cr>
-onoremap il" :normal! $F"vi"<cr>
-onoremap il' :normal! $F'vi'<cr>
+onoremap il) :normal! $F)hvi)<cr>
+onoremap il" :normal! $F"hvi"<cr>
+onoremap il' :normal! $F'hvi'<cr>
 
-onoremap in@ :normal! /\v[A-z0-9._]*\@.*\.[a-z]{2,3}\r
-nnoremap <f4> :execute ":normal! /^\\zs[A-z0-9._]*\\ze\@.*\.[a-z]*$\rcgn"<CR>
-
+"edit file types
 function! EditFileType()
     let b:fileType = expand('%:e')
-    if b:fileType == "js"
+    if b:fileType == "js" || b:fileType == "vue"
         execute "normal :e ~/.vim/ftplugin/javascript.vim\<CR>"
-    elseif b:fileType == "md"
-        execute "normal :e ~/.vim/ftplugin/markdown.vim\<CR>"
+    elseif b:fileType == "typescript" || b:filetype == "ts"
+        execute "normal :e ~/.vim/ftplugin/typescript.vim\<CR>"
+    elseif b:fileType == "md" || b:fileType == "vimwiki"
+        execute "normal :e ~/.vim/ftplugin/vimwiki.vim\<CR>"
     else
         execute "normal :e  ~/.vim/ftplugin/%:e.vim\<CR>"
     endif
 endfunc
 
-"magicalcritic@gmail.com
-
-nnoremap <F7> :e ~/.vim/ftplugin/javascript.vim<CR>
-nnoremap <leader><F8> :vs ~/.vim/ftplugin/%:e.vim<CR>
-
-let g:tex_superscripts= "[0-9a-zA-W.,:;+-<>/()=]"
-let g:tex_subscripts= "[0-9aehijklmnoprstuvx,+-/().]"
-
-"Switch trigger
-"-------------
-"set path+="~/.vim/ftplugin"
-set rtp+="~/.vim/ftplugin/"
-let g:switch_mapping = "|"
+""Switch trigger
+""-------------
+let g:switch_mapping = "¬"
 let g:switch_custom_definitions = [
             \   ['or', 'and', 'xor'],
             \   ['const', 'let', 'var'],
@@ -181,42 +204,47 @@ let g:switch_custom_definitions = [
             \   ['hidden','visible'],
             \   ['block','inline','flex'],
             \   ['center','left','right','auto'],
-            \   ['public','private','protected','static'],]
+            \   ['public','private','protected','static']
+            \]
 
-"let g:loaded_python_provider = 1 
+let g:loaded_python_provider = 1 
 let g:netrw_preview   = 1
 let g:netrw_winsize   = 30
 
 "Plug 'SirVer/ultisnips'
-cabbrev snips echom g:UltiSnipsListSnippets<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsEditSplit="vertical" "ultisnips in split
+
 "CtrlP
+let g:ctrlp_map = '<C-p>'
 set wildignore+=.git/*,.hg/*,.svn/*,*/laravel/mysql/*
 set wildignore+=~/windows/*
-"Laravel
-set wildignore+=*/node_modules/*,*/sotrage/*,*/config/*,*/public/*,*/vendor/*
-set wildignore+=*/sail_mysql/*,*/bootstrap/*,artisan,*lock*,*docker*,*.xml
-let g:ctrlp_map = '<C-p>'
-set t_Co=256
-colorscheme sonokai
 
-nmap <leader>ran :!ranger<CR><CR>
+"Laravel
+set wildignore+=*/node_modules/*,*/config/*,*/vendor/*
+set wildignore+=*/sail_mysql/*,*/bootstrap/*,artisan,*lock*,*docker*,*.xml
+set wildignore+=*/storage/framework**,/home/adam/windows/*
+"disabled for vuejs set wildignore+=*/public/*
+nnoremap <c-p> :CtrlPClearCache<bar>CtrlP<cr>
+"set t_Co=256
+
+nnoremap n nzz
+"nmap <leader>ran :!ranger<CR><CR>
 
 "sorround tags
-nmap <leader>" :norm bi"<esc>ea"<esc>
-nmap <leader>' :norm bi'<esc>ea'<esc>
-nmap <leader>] :norm bi[<esc>ea]<esc>
-nmap <leader>[ :norm bi[<esc>ea]<esc>
-nmap <leader>) :norm bi(<esc>ea)<esc>
-nmap <leader>( :norm bi(<esc>ea)<esc>
-nmap <leader>{ :norm bi{<esc>ea}<esc>
-nmap <leader>} :norm bi{<esc>ea}<esc>
-nmap <leader>ex :Explore<cr>
-"Put ; on the end of the line
+nnoremap <leader>" :norm  viwdi"<esc>p<esc>a"<esc>
+nnoremap <leader>' :norm  viwdi'<esc>p<esc>a'<esc>
+nnoremap <leader>` :norm  viwdi`<esc>p<esc>a`<esc>
+nnoremap <leader>] :norm  viwdi[<esc>p<esc>a]<esc>
+nnoremap <leader>[ :norm  viwdi[<esc>p<esc>a]<esc>
+nnoremap <leader>) :norm  viwdi(<esc>p<esc>a)<esc>
+nnoremap <leader>( :norm  viwdi(<esc>p<esc>a)<esc>
+nnoremap <leader>{ :norm  viwdi{<esc>p<esc>a}<esc>
+nnoremap <leader>} :norm  viwdi{<esc>p<esc>a}<esc>
+nnoremap <leader>ex :Explore<cr>
 
 "split zoom
 "----------
@@ -229,16 +257,11 @@ nnoremap <S-Q> ZQ
 "saving with CTRL+S
 nnoremap <c-s> :update<CR>
 inoremap <c-s>  <Esc>:update<CR>a
+
 "Tab Handling
-nnoremap tn :tabnew<space>
-nnoremap tk :tabnext<CR>
-nnoremap tj :tabprev<CR>
-nnoremap th :tabfirst<CR>
-nnoremap tl :tablast<CR>
-nnoremap tc :tabclose<CR>
-inoremap jk <Esc>
-inoremap Jk <Esc>
-inoremap JK <Esc>
+nnoremap <leader>tc :tabnew<CR>
+nnoremap <leader>tn :tabnext<CR>
+nnoremap <leader>tp :tabprev<CR>
 
 "Split Navigation
 "-------------------------
@@ -247,12 +270,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <Esc> <C-\><C-n>
 "Get HUN ZZ ZQ
 nnoremap YQ ZQ
 nnoremap YY ZZ
@@ -261,39 +278,33 @@ noremap gQ Q
 noremap Q gq
 nnoremap <leader><F9> :vsp ~/.vimrc<CR>
 
+
+
 "do not draw screen on running macro
 set lazyredraw
 
 "insert mode cursor movement up and down
-"inoremap <C-j> <Down>
-"inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-w> <C-o>w
+inoremap <C-b> <C-o>b
+inoremap <C-a> <C-o>A
 
 nnoremap <Right> :next<cr>
 nnoremap <Left> :prev<cr>
-augroup testgroup
-"skeletons
-    autocmd!
-    au! BufNewFile *.html :-1r /home/adam/.vim/templates/temp.html
-    au! BufNewFile *.tex :-1r /home/adam/.vim/templates/temp.tex
-    "resize vim on terminal size change
-    au! BufWritePost UltiSnips/*.snippets execute :call UltiSnips#RefreshSnippets()
-    au! VimResized * execute "normal! \<c-w>="
-    "
-    "auto source vimrc & edit
-    "------------------------
-    au! BufEnter *.hux :set syntax=hux | set ft=hux
-    "au! BufEnter *.js :source /home/adam/.vim/ftplugin/javascript.vim
-    au! BufWritePost .vimrc source %
-    au! BufWritePost .exrc source %
-    au! BufWritePost i3rust silent !i3 restart
-    au! BufWritePost httpd.conf silent !web stop && web start
-augroup END
 
+"vim 2html export
+let g:html_font = "Ubuntu Mono"
+let g:html_use_xhtml = 1
 
+let g:vimwiki_list = [{'path': '~/home/content/en/personalKnowledgeGraph/',
+                       \ 'index': 'README', 'ext': '.md',
+                       \ 'name' : 'pKg',
+                       \ 'syntax' : 'markdown'}]
 
-augroup cursorOnTheSamePlace
+augroup mygroup
+    au!
     "jump to last edited point
-    autocmd!
     autocmd BufReadPost *
                 \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
                 \ |   exe "normal! g`\""
@@ -304,18 +315,22 @@ augroup cursorOnTheSamePlace
                 \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
                 \ |   exe "normal! g`\""
                 \ | endif
+
+    "skeletons
+    "resize vim on terminal size change
+    au! BufWritePost UltiSnips/*.snippets execute :call UltiSnips#RefreshSnippets()
+    au! VimResized * execute "normal! \<c-w>="
+    
+    "auto source vimrc & edit
+    "------------------------
+    au! BufEnter *.hux :set syntax=hux | set ft=hux
+    "au! BufEnter *.js :source /home/adam/.vim/ftplugin/javascript.vim
+    au! BufWritePost .vimrc source %
+    au! BufWritePost .exrc source %
 augroup END
 
-"Date Insertion
+""Date Insertion
 command! Date execute "normal i<C-R>=strftime('%F %T')<CR><ESC>"
-"Make tags with Ctags
-
-function! HelpOnly()
-    :help
-    :only
-endfunction
-
-nnoremap <leader><right> :right<CR>
 
 "auto format "for"
 nnoremap <leader>for :call AutoFormat()<CR>
@@ -328,10 +343,20 @@ endfunc
 
 "empty (b) or blank (n) lines reduce
 nnoremap ;b   GoZ<Esc>:g/^$/.,/./-j<CR>Gdd
-nnoremap ;n   GoZ<Esc>:g/^[ <Tab>]*$/.,/[^ <Tab>]/-j<CR>Gdd
 
-"change the second "" pair
-:nnoremap c2" 04f"ci"
-"
 "change the third "" pair
 :nnoremap c3" 06f"ci"
+
+
+"vue course read
+nnoremap <F5> :r !tail -11 index.html<CR>
+nnoremap <F6> :r app.js<CR>
+
+nnoremap <c-b> <nop>
+
+"common abbrevs
+source ~/.vim/abbrev.vim
+
+set mouse=a
+
+cabbrev aleq !column -t -s= -o=

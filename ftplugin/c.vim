@@ -1,5 +1,4 @@
 let maplocalleader = ","
-iab cahr char
 set makeprg=gcc
 nnoremap <leader>ma :Make<CR>
 nnoremap <leader>cn :cn<CR>
@@ -16,19 +15,6 @@ let g:tagbar_position = 'botright vertical'
 let g:tagbar_width=30
 let &makeprg = 'if [ -f Makefile  ]; then make; else make -C ..; fi'
 
-"kc ------------------------------------------------------------
-" VIM SETTINGS
-" ------------------------------------------------------------
-
-set nu                  " Enable line numbers
-syntax on               " Enable synax highlighting
-set incsearch           " Enable incremental search
-set hlsearch            " Enable highlight search
-set splitbelow          " Always split below
-set mouse=a             " Enable mouse drag on window splits
-set tabstop=4           " How many columns of whitespace a \t is worth
-set shiftwidth=4        " How many columns of whitespace a “level of indentation” is worth
-set expandtab           " Use spaces when tabbing
 " ------------------------------------------------------------
 " MAPPINGS
 " ------------------------------------------------------------

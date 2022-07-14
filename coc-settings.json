@@ -1,12 +1,14 @@
 {
-    "java.home": "/usr/lib/jvm/default",
-    "java.errors.incompleteClasspath.severity": "ignore",
-
-
-    "snippets.ultisnips.direcotries":[
-        "UltiSnips",
-        "~/.vim/Ultisnips"
-    ],
-    "tsserver.locale" : "hu",
-    "javascript.validate.enable" : true
+    "tsserver.locale" : "en",
+    "javascript.validate.enable" : true,
+    "coc.preferences.useQuickfixForLocations": true,
+    "coc.preferences.extensionUpdateCheck": "never",
+    "suggest.disableMenu": true,
+    "suggest.snippetIndicator": "",
+    "colors.filetypes": ["*"],
+    "coc.preferences.colorSupport": true,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": false,
+    "coc.preferences.formatOnSaveFiletypes": ["typescript", "javascript"]
 }
