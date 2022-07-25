@@ -3,10 +3,10 @@ nnoremap <F1> :call CheckSpell()<CR>
 set spelllang=en
 set spell
 
-hi Cursor guifg=white guibg=white 
+"hi Cursor guifg=white guibg=white 
 
-let g:vimwiki_conceallevel=2
-let g:vimwiki_conceal_onechar_markers=1
+"let g:vimwiki_conceallevel=2
+"let g:vimwiki_conceal_onechar_markers=1
 
 
 function! CheckSpell()
@@ -18,11 +18,9 @@ else
 endif
 endfunc
 
-let g:vimwiki_list = [{'path': '~/repos/personalKnowledgeGraph/',
+"let g:vimwiki_list = [{'path': '~/repos/personalKnowledgeGraph/',
                        \ 'index': 'README', 'ext': '.md',
                        \ 'name' : 'pKg',
 		       \ 'syntax' : 'markdown'}]
 
-xnoremap <leader>js :!wrap js<CR>
-set nonumber
-set norelativenumber
+xnoremap <leader>js :!~/bin/wrap js<CR>

@@ -1,14 +1,21 @@
 {
-    "tsserver.locale" : "en",
-    "javascript.validate.enable" : true,
-    "coc.preferences.useQuickfixForLocations": true,
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.extensionUpdateCheck": "never",
-    "suggest.disableMenu": true,
-    "suggest.snippetIndicator": "",
+    "coc.preferences.useQuickfixForLocations": true,
     "colors.filetypes": ["*"],
-    "coc.preferences.colorSupport": true,
     "diagnostic.checkCurrentLine": true,
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextCurrentLineOnly": false,
-    "coc.preferences.formatOnSaveFiletypes": ["typescript", "javascript"]
+    "eslint.enable": true,
+    "javascript.validate.enable" : true,
+    "suggest.disableMenu": false,
+    "suggest.snippetIndicator": "",
+    "tsserver.locale" : "hu",
+    "typescript.showUnused" : false,
+    "typescript.suggestionActions.enabled": true,
+    "vetur.format.defaultFormatter.html":"prettier",
+    "vetur.validation.interpolation": false,
+    "vetur.validation.script": false,
+    "vetur.format.enable": true
 }
+    //"coc.preferences.formatOnSaveFiletypes": ["typescript", "javascript", "js", "vue"]

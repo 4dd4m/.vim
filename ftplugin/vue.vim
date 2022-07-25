@@ -1,5 +1,3 @@
-set signcolumn=no
-"source ~/.vim/ftplugin/javascript.vim
-"source ~/.vim/ftplugin/html.vim
-set foldmethod=manual
-set wildignore+=node_modules/*
+source ~/.vim/ftplugin/javascript.vim
+set wildignore+=*/node_modules/*,node_modules,node_modules/
+let g:UltiSnipsAddFiletypes="javascript"

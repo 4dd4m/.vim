@@ -32,8 +32,22 @@ snippet funcai "automatically invoked function"
 $0
 endsnippet
 
-snippet funcv "var x = function()"
-let ${1:variable}  = function ${2:Name}(${3:Parameters}){
+snippet constfun "var x = function()"
+const ${1:variable}  = function (${2:Parameters}){
+	${VISUAL}$4
+};
+$0
+endsnippet
+
+snippet cosntfun "var x = function()"
+const ${1:variable}  = function (${2:Parameters}){
+	${VISUAL}$4
+};
+$0
+endsnippet
+
+snippet letfun "var x = function()"
+let ${1:variable}  = function (${2:Parameters}){
 	${VISUAL}$4
 };
 $0
@@ -100,12 +114,6 @@ endsnippet
 snippet if "if" A
 if(${1:condition}){
 	${VISUAL}$3
-}$0
-endsnippet
-
-snippet el "else" i
-else{
-	${VISUAL}$1
 }$0
 endsnippet
 
@@ -230,4 +238,13 @@ snippet arr "arrow function"
 (${1:param}) => {
 $2
 }$0
+endsnippet
+
+
+snippet qsel	"doc.query selector"
+document.querySelector('${1:selector}')$0
+endsnippet
+
+snippet qall	"doc.query selector"
+document.querySelectorAll('${1:selector}')$0
 endsnippet
