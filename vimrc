@@ -1,4 +1,10 @@
-filetype plugin indent on
+source ~/.vim/settings/plugins.vim
+source ~/.vim/settings/mappings.vim
+source ~/.vim/settings/functions.vim
+source ~/.vim/settings/abbrev.vim
+source ~/.vim/settings/autocommands.vim
+source ~/.vim/settings/highlight.vim
+
 set nocompatible
 let mapleader = '\' "Leader key is <SPACE>ii
 set smartindent tabstop=4 softtabstop=4 expandtab shiftwidth=4
@@ -29,13 +35,8 @@ set nofoldenable
 set lazyredraw
 set mouse=a
 
-source ~/.vim/settings/plugins.vim
-source ~/.vim/settings/mappings.vim
-source ~/.vim/settings/functions.vim
-source ~/.vim/settings/abbrev.vim
-source ~/.vim/settings/autocommands.vim
 
-""formatting json
+""formatting 1 line json
 command! Pretty !Pretty %:p
 
 colorscheme sonokai
@@ -77,3 +78,13 @@ let g:UltiSnipsEditSplit="vertical" "ultisnips in split
 
 "CtrlP
 let g:ctrlp_map = '<C-p>'
+
+
+"prettier globals
+let g:prettier#config#end_of_line = get(g:, 'prettier#config#end_of_line', 'crlf')
+let g:prettier#config#print_width = 120
+
+"Coc notify's
+let g:coc_notify_info_icon="i"
+let g:coc_notify_warning_icon="w"
+let g:coc_notify_error_icon="E"

@@ -1,21 +1,30 @@
 {
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.extensionUpdateCheck": "never",
+    "coc.preferences.formatOnSaveFiletypes": ["typescript", "javascript", "js", "vue","ts", "html", "css"],
+    "coc.preferences.rootPatterns": ["_exrc",".exrc"],
     "coc.preferences.useQuickfixForLocations": true,
+    "coc.source.around.disableSyntaxes": ["comment","string"],
+    "coc.source.buffer.disableSyntaxes": ["comment","string"],
+    "coc.source.file.disableSyntaxes": ["comment","string"],
     "colors.filetypes": ["*"],
     "diagnostic.checkCurrentLine": true,
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextCurrentLineOnly": false,
     "eslint.enable": true,
     "javascript.validate.enable" : true,
+    "snippets.snipmate.enable": false,
     "suggest.disableMenu": false,
-    "suggest.snippetIndicator": "",
     "tsserver.locale" : "hu",
     "typescript.showUnused" : false,
     "typescript.suggestionActions.enabled": true,
     "vetur.format.defaultFormatter.html":"prettier",
+    "vetur.format.enable": true,
     "vetur.validation.interpolation": false,
     "vetur.validation.script": false,
-    "vetur.format.enable": true
+    "snippets.extends" : {
+        "vue": ["javascript", "vue"],
+        "javascript": ["javascript", "vue"],
+        "js": ["javascript", "vue"]
+    }
 }
-    //"coc.preferences.formatOnSaveFiletypes": ["typescript", "javascript", "js", "vue"]

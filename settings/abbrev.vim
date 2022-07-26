@@ -27,11 +27,12 @@ iabbrev Ip IP
 iabbrev reciever receiver
 iabbrev reencapsulating re-encapsulatig
 iabbrev thee the
-
-
+iabbrev Winow Window
+iabbrev nad and
+iabbrev restrictig restricting
+iabbrev woth with
 
 "hungarian correction
-
 iabbrev Pld Például
 iabbrev Pld, Például,
 iabbrev Pld: Például:
@@ -66,13 +67,9 @@ iabbrev vagunk vagyunk
 iabbrev vmt valamit
 
 "Command Abbrevs
-
 cabbrev cocjson :e ~/.vim/coc-settings.json<CR>
 cabbrev snips echom g:UltiSnipsListSnippets<CR>
 cabbrev soft source ~/.vim/ftplugin/hux.vim<CR>
 cabbrev vh vert help
 cabbrev vhelp vert help
-iabbrev Winow Window
-iabbrev nad and
-iabbrev restrictig restricting
-iabbrev woth with
+cabbrev Diff Gvdiffsplit

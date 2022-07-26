@@ -1,25 +1,21 @@
+filetype plugin indent on
+
 "WINDOWS PLUG
 if has("win32")
     nnoremap <F9> :e ~/_vimrc<CR>
     let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit="~/.vim/UltiSnips"
+
     call plug#begin('~/vimfiles/autoload')
-    "GUI
-    if has("gui")
-        set guifont=Source\ Code\ Pro\ 16
-        set toolbar=
-        set guioptions=
-        set cmdheight=1
-        highlight Cursor guifg=white guibg=black
-        highlight iCursor guifg=white guibg=steelblue
-    endif
-"LINUX PLUG
 else
+"LINUX PLUG
     nnoremap <F9> :e ~/.vimrc<CR>
     call plug#begin('~/.vim/plugged')
 endif
+
+
+
 call plug#begin('~/.vim/plugged')
 Plug 'sainnhe/sonokai'
-"SYSTEM RELATED
 Plug 'junegunn/fzf',{ 'do' : { -> fzf#install() }}
 Plug 'junegunn/fzf.vim',
 Plug 'sheerun/vim-polyglot',
@@ -34,12 +30,7 @@ Plug 'prettier/vim-prettier', {
   \ 'for' : ['javascript', 'markdown',  'json', 'vue','vimwiki', 'html', 'typescript', 'bash']
   \ }
 
-" lf|crlf|cr|all
-" defaut: 'lf'
-let g:prettier#config#end_of_line = get(g:, 'prettier#config#end_of_line', 'crlf')
-let g:prettier#config#print_width = 120
 
-"JAVASCRIPT RELATED
 Plug 'leafOfTree/vim-vue-plugin', {'for': 'vue'}
 
 "Plug 'khzaw/vim-conceal'
@@ -52,7 +43,6 @@ Plug 'iamcco/markdown-preview.vim',{ 'do': { -> mkdp#util#install() }, 'for': ['
 "Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 "Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'tex' }
 
-
 "DEV RELATED
 Plug 'SirVer/ultisnips'," { 'for': ['c','javascript','js','vue','tex','java','python','sh','bash','html'] }
 Plug 'mattn/emmet-vim' ", {'for' : ['html','php','vue'] } "Expand by: C-Y + ,
@@ -64,6 +54,5 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'},
 "Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
 "Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
 Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'tpope/vim-fugitive',
-"Plug 'jwalton512/vim-blade', {'for' : 'php'}
+Plug 'tpope/vim-fugitive',
 call plug#end()

@@ -1,3 +1,4 @@
+nnoremap <leader>? :Maps<CR>
 nnoremap <leader>/ :nohl<CR>
 nnoremap <Leader>\ :Buffers<CR>
 nnoremap <leader>n :cn<CR>

@@ -35,3 +35,22 @@ function! <SID>SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
+
+function! g:DiffThis()
+    let $file = expand('%f')
+    exe "vnew"
+    :1-read !git show development:"./"$file
+    :diffthis
+    call feedkeys("\<C-W>\<C-P>")
+    :diffthis
+endfunc
+com! Pulled call g:DiffThis()
