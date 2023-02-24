@@ -42,11 +42,13 @@ Plug 'iamcco/markdown-preview.vim',{ 'do': { -> mkdp#util#install() }, 'for': ['
 "Plug 'lervag/vimtex', { 'for': 'tex', 'tag': 'v1.6' }
 "Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 "Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'tex' }
+Plug 'OmniSharp/omnisharp-vim'
 
 "DEV RELATED
 Plug 'SirVer/ultisnips'," { 'for': ['c','javascript','js','vue','tex','java','python','sh','bash','html'] }
 Plug 'mattn/emmet-vim' ", {'for' : ['html','php','vue'] } "Expand by: C-Y + ,
-Plug 'neoclide/coc.nvim', {'branch': 'release'},
+"Plug 'neoclide/coc.nvim', {'branch': 'release'},
+Plug 'dense-analysis/ale'
 "Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 "Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 "Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}

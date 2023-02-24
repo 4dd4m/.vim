@@ -12,8 +12,6 @@ augroup mygroup
                 \ |   exe "normal! g`\""
                 \ | endif
 
-    "resize vim on terminal size change
-    au! VimResized * execute "normal! \<c-w>="
 
     "refresh snippets saving the snippets file
     au! BufWritePost *.snippets execute :call UltiSnips#RefreshSnippets()
